@@ -11,11 +11,13 @@ import Contact from './pages/Contact';
 import ServiceDetail from './pages/ServiceDetail';
 import Offers from './pages/Offers';
 import FloatingSocials from './components/FloatingSocials';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen font-sans bg-white text-gray-900">
+        <ScrollToTop />
         <Navbar />
         <FloatingSocials />
         <main className="flex-grow">
