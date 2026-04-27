@@ -6,53 +6,53 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedArchive, setSelectedArchive] = useState(null);
 
-  const posts = [
-    {
-      id: 1,
-      title: "Top 5 Bridal Makeup Trends for 2024",
-      excerpt: "Discover the latest bridal makeup trends that will make you look stunning on your big day. From minimalist glass skin looks to bold graphic eyes, find your perfect style.",
-      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80",
-      date: "October 2023",
-      author: "Sunita Gupta",
-      category: "Bridal"
-    },
-    {
-      id: 2,
-      title: "Essential Skincare Routine for Glowing Skin",
-      excerpt: "A step-by-step guide to achieving and maintaining naturally glowing skin. Learn about the right products, order of application, and techniques for your specific skin type.",
-      image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80",
-      date: "September 2023",
-      author: "Beauty Team",
-      category: "Skincare"
-    },
-    {
-      id: 3,
-      title: "Choosing the Right Hairstyle for Your Face Shape",
-      excerpt: "Not sure which hairstyle suits you best? Read our comprehensive guide on matching haircuts and styling techniques with oval, round, square, and heart-shaped faces.",
-      image: "https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=1200&q=80",
-      date: "September 2023",
-      author: "Sunita Gupta",
-      category: "Hair"
-    },
-    {
-      id: 4,
-      title: "The Ultimate Guide to Long-Lasting Party Makeup",
-      excerpt: "Get ready for the festive season with our expert tips on creating glamorous party makeup looks that survive dancing, sweating, and eating.",
-      image: "https://images.unsplash.com/photo-1512496015851-a1dc8a477d81?auto=format&fit=crop&w=1200&q=80",
-      date: "August 2023",
-      author: "Beauty Team",
-      category: "Makeup"
-    },
-    {
-      id: 5,
-      title: "Why You Need a Pre-Bridal Package",
-      excerpt: "Thinking of skipping the pre-bridal prep? Here is why investing in body polishing, deep cleansing, and hair spas weeks before your wedding makes a massive difference.",
-      image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=80",
-      date: "July 2023",
-      author: "Sunita Gupta",
-      category: "Bridal"
-    }
-  ];
+    const posts = [
+      {
+        id: 1,
+        title: "The Art of Bridal Makeup: Insights from Sunita Gupta",
+        excerpt: "Bridal makeup is an art that goes beyond just applying cosmetics; it’s about making a bride feel her absolute best on one of the most important days of her life. In Kanpur, Sunita Gupta is a name synonymous with perfection.",
+        image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80",
+        date: "July 1, 2024",
+        author: "Simran",
+        category: "Bridal"
+      },
+      {
+        id: 2,
+        title: "Sunita Gupta: Where Creativity Meets Makeup Artistry",
+        excerpt: "When it comes to bridal makeup in Kanpur, there’s one name that stands out above the rest—Sunita Gupta. Her ability to transform brides into their most radiant selves has earned her accolades and a dedicated following.",
+        image: "https://images.unsplash.com/photo-1512496015851-a1dc8a477d81?auto=format&fit=crop&w=1200&q=80",
+        date: "June 29, 2024",
+        author: "Simran",
+        category: "Bridal"
+      },
+      {
+        id: 3,
+        title: "Sunita Gupta’s Golden Touch: Elevating Kanpur’s Beauty Scene",
+        excerpt: "Discover how Sunita Gupta and Gold Crown Studio are transforming the beauty landscape in Kanpur with innovative techniques, premium products, and unmatched expertise.",
+        image: "https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=1200&q=80",
+        date: "June 28, 2024",
+        author: "Simran",
+        category: "Beauty"
+      },
+      {
+        id: 4,
+        title: "The Magic of Makeup with Sunita Gupta",
+        excerpt: "From subtle enhancements to dramatic transformations, explore the magical touch of Sunita Gupta. Learn about her signature styles and why brides trust her for their big day.",
+        image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80",
+        date: "June 27, 2024",
+        author: "Simran",
+        category: "Makeup"
+      },
+      {
+        id: 5,
+        title: "Sunita Gupta’s Secrets to Radiant Bridal Makeup",
+        excerpt: "Unlock the secrets to a glowing, flawless bridal look. Sunita Gupta shares her top tips for skin preparation, foundation matching, and long-lasting makeup techniques.",
+        image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=80",
+        date: "June 26, 2024",
+        author: "Simran",
+        category: "Bridal"
+      }
+    ];
 
   // Derive categories and their counts dynamically
   const categories = useMemo(() => {
