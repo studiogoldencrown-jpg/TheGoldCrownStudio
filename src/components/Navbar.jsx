@@ -62,7 +62,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
-              <img src="/images/logo.png" alt="Gold Crown Studio Logo" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Gold Crown Studio Logo" className="h-10 md:h-12 w-auto object-contain" />
             </Link>
           </div>
           
