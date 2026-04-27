@@ -20,6 +20,7 @@ const reasons = [
 const eligibleServices = [
   'Bridal Makeup', 'Party Makeup', 'Hair Styling', 'Skin Facial',
   'Manicure & Pedicure', 'Body Polishing', 'Hair Extensions', 'Pre-Bridal Package',
+  'Eyebrows', 'Hair Cutting', 'Saree Draping',
 ];
 
 export default function Offers() {
