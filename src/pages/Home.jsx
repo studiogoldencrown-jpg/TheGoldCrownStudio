@@ -39,23 +39,36 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center overflow-hidden" style={{ height: 'clamp(420px, 70vh, 700px)' }}>
+      {/* Mobile: auto height so full image shows. Desktop: fixed clamp height with cover */}
+      <section className="relative w-full overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`transition-opacity duration-1000 ease-in-out ${
               index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
+            } ${index === 0 ? 'relative' : 'absolute inset-0'}`}
           >
-            <picture>
-              <source media="(min-width: 1024px)" srcSet={slide.desktop} />
-              <source media="(min-width: 768px)" srcSet={slide.tablet} />
-              <img
-                src={slide.mobile}
-                alt="Salon Hero"
-                className="object-cover w-full h-full"
-              />
-            </picture>
+            {/* Mobile: show full image naturally */}
+            <img
+              src={slide.mobile}
+              alt="Salon Hero"
+              className="w-full block md:hidden"
+              style={{ objectFit: 'contain', background: '#000' }}
+            />
+            {/* Tablet */}
+            <img
+              src={slide.tablet}
+              alt="Salon Hero"
+              className="w-full hidden md:block lg:hidden"
+              style={{ height: 'clamp(420px, 60vh, 650px)', objectFit: 'cover', objectPosition: 'center top' }}
+            />
+            {/* Desktop */}
+            <img
+              src={slide.desktop}
+              alt="Salon Hero"
+              className="w-full hidden lg:block"
+              style={{ height: 'clamp(500px, 70vh, 750px)', objectFit: 'cover', objectPosition: 'center top' }}
+            />
           </div>
         ))}
         
