@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -14,7 +14,7 @@ import FloatingSocials from './components/FloatingSocials';
 
 function App() {
   return (
-    <Router basename="/TheGoldCrownStudio">
+    <Router>
       <div className="flex flex-col min-h-screen font-sans bg-white text-gray-900">
         <Navbar />
         <FloatingSocials />
