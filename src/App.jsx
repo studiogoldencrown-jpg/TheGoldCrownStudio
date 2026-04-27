@@ -9,6 +9,7 @@ import Reviews from './pages/Reviews';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import ServiceDetail from './pages/ServiceDetail';
+import Offers from './pages/Offers';
 import FloatingSocials from './components/FloatingSocials';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/offers" element={<Offers />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
