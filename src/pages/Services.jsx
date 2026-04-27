@@ -121,26 +121,78 @@ const Services = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="flex flex-col lg:flex-row gap-8">
+        {/* ── Mobile Layout: Scrollable List of All Categories ── */}
+        <div className="flex flex-col gap-12 lg:hidden">
+          {serviceCategories.map((category) => (
+            <div key={category.id} id={category.id} className="scroll-mt-24">
+              {/* Hero image */}
+              <div className="relative rounded-2xl overflow-hidden shadow-lg mb-6 h-56">
+                <img
+                  src={category.image}
+                  alt={category.label}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5">
+                  <h2 className="text-3xl font-serif text-white font-bold drop-shadow">
+                    {category.emoji} {category.label}
+                  </h2>
+                </div>
+              </div>
 
-          {/* ── Sidebar / Mobile Dropdown ── */}
-          <aside className="lg:w-64 flex-shrink-0">
-            {/* Mobile toggle */}
-            <button
-              className="lg:hidden w-full flex justify-between items-center bg-black text-white px-4 py-3 rounded-lg mb-2 font-medium"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <span>{active.emoji} {active.label}</span>
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+              {/* Description */}
+              <p className="text-gray-600 leading-relaxed mb-6 text-sm">{category.description}</p>
 
-            {/* Menu list */}
-            <nav className={`${menuOpen ? 'block' : 'hidden'} lg:block`}>
+              {/* Services list */}
+              <h3 className="text-lg font-serif font-semibold text-gray-900 mb-3 border-b border-gray-100 pb-2">
+                Pricing & Services
+              </h3>
+              <div className="flex flex-col gap-3">
+                {category.services.map((item, i) => (
+                  <div key={i} className="bg-gray-50 border border-gray-100 rounded-xl p-4 shadow-sm">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="font-semibold text-gray-900 text-sm">{item.name}</h4>
+                      <span className="text-gold font-bold text-sm ml-2 whitespace-nowrap">{item.price}</span>
+                    </div>
+                    <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {/* Mobile CTA */}
+          <div className="bg-black text-white rounded-2xl px-6 py-8 text-center mt-4 shadow-xl">
+            <h3 className="text-2xl font-serif mb-2">Ready to Book?</h3>
+            <p className="text-gray-400 text-sm mb-5">Contact us today and let Sunita Gupta and her team take care of you.</p>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://wa.me/919839550961"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gold hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg transition-colors"
+              >
+                Book on WhatsApp
+              </a>
+              <Link
+                to="/contact"
+                className="border border-white hover:bg-white hover:text-black text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Desktop Layout: Sidebar + Detail Panel ── */}
+        <div className="hidden lg:flex flex-row gap-8">
+          <aside className="w-64 flex-shrink-0">
+            <nav className="block">
               <ul className="bg-gray-50 border border-gray-100 rounded-xl overflow-hidden shadow-sm">
                 {serviceCategories.map((cat) => (
                   <li key={cat.id}>
                     <button
-                      onClick={() => { setActiveId(cat.id); setMenuOpen(false); }}
+                      onClick={() => { setActiveId(cat.id); }}
                       className={`w-full text-left flex items-center justify-between px-5 py-4 text-sm font-medium border-b border-gray-100 last:border-0 transition-all ${
                         activeId === cat.id
                           ? 'bg-black text-gold font-semibold'
@@ -156,7 +208,6 @@ const Services = () => {
                   </li>
                 ))}
               </ul>
-
               {/* Book CTA in sidebar */}
               <a
                 href="https://wa.me/919839550961"
@@ -169,11 +220,11 @@ const Services = () => {
             </nav>
           </aside>
 
-          {/* ── Service Detail Panel ── */}
+          {/* Service Detail Panel */}
           <div className="flex-1 min-w-0">
             <div key={active.id} className="animate-fadeIn">
               {/* Hero image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-lg mb-8 h-64 md:h-80">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg mb-8 h-80">
                 <img
                   src={active.image}
                   alt={active.label}
@@ -181,7 +232,7 @@ const Services = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
-                  <h2 className="text-3xl md:text-4xl font-serif text-white font-bold drop-shadow">
+                  <h2 className="text-4xl font-serif text-white font-bold drop-shadow">
                     {active.emoji} {active.label}
                   </h2>
                 </div>
@@ -194,7 +245,7 @@ const Services = () => {
               <h3 className="text-xl font-serif font-semibold text-gray-900 mb-4 border-b border-gray-100 pb-3">
                 Pricing & Services
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+              <div className="grid grid-cols-2 gap-4 mb-10">
                 {active.services.map((item, i) => (
                   <div key={i} className="bg-gray-50 border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow">
                     <div className="flex justify-between items-start mb-1">
@@ -210,7 +261,7 @@ const Services = () => {
               <div className="bg-black text-white rounded-2xl px-8 py-8 text-center">
                 <h3 className="text-2xl font-serif mb-2">Ready to Book {active.label}?</h3>
                 <p className="text-gray-400 text-sm mb-5">Contact us today and let Sunita Gupta and her team take care of you.</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <div className="flex flex-row gap-3 justify-center">
                   <a
                     href="https://wa.me/919839550961"
                     target="_blank"
@@ -229,7 +280,6 @@ const Services = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
