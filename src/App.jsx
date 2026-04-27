@@ -13,7 +13,7 @@ import FloatingSocials from './components/FloatingSocials';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/TheGoldCrownStudio">
       <div className="flex flex-col min-h-screen font-sans bg-white text-gray-900">
         <Navbar />
         <FloatingSocials />
