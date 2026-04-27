@@ -41,13 +41,20 @@ export default function Offers() {
 
   const claimRef = useRef(null);
 
-  /* Read ?ref= and ?phone= from URL on mount */
+  /* Read ?ref= and ?phone= from URL on mount.
+     With HashRouter the full path lives inside window.location.hash
+     e.g.  #/offers?ref=Priya&phone=98765xxxxx
+     so we must parse the query string from the hash, NOT from window.location.search */
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const ref   = params.get('ref');
-    const phone = params.get('phone');
-    if (ref)   setReferrerName(decodeURIComponent(ref));
-    if (phone) setReferrerPhone(decodeURIComponent(phone));
+    const hash = window.location.hash; // "#/offers?ref=Priya&phone=98765xxxxx"
+    const qIndex = hash.indexOf('?');
+    if (qIndex !== -1) {
+      const params = new URLSearchParams(hash.slice(qIndex));
+      const ref   = params.get('ref');
+      const phone = params.get('phone');
+      if (ref)   setReferrerName(decodeURIComponent(ref));
+      if (phone) setReferrerPhone(decodeURIComponent(phone));
+    }
   }, []);
 
   /* Build base URL for the offers page */
