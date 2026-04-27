@@ -5,16 +5,18 @@ import { ChevronRight, Star } from 'lucide-react';
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const base = import.meta.env.BASE_URL;
+
   const slides = [
     {
-      desktop: "/images/home-banner-2.png",
-      tablet: "/images/home-banner-2.png",
-      mobile: "/images/home-banner-2-mobile.png"
+      desktop: `${base}images/home-banner-2.png`,
+      tablet: `${base}images/home-banner-2.png`,
+      mobile: `${base}images/home-banner-2-mobile.png`
     },
     {
-      desktop: "/images/home-banner.png",
-      tablet: "/images/home-banner-tablet.png",
-      mobile: "/images/home-banner-mobile.png"
+      desktop: `${base}images/home-banner.png`,
+      tablet: `${base}images/home-banner-tablet.png`,
+      mobile: `${base}images/home-banner-mobile.png`
     }
   ];
 
