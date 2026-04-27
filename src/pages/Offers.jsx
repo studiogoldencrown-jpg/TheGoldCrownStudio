@@ -41,12 +41,14 @@ export default function Offers() {
 
   const claimRef = useRef(null);
 
-  /* Read ?ref= and ?phone= from URL on mount.
-     With HashRouter the full path lives inside window.location.hash
-     e.g.  #/offers?ref=Priya&phone=98765xxxxx
-     so we must parse the query string from the hash, NOT from window.location.search */
+  /* Flow:
+     1. Generated link: /TheGoldCrownStudio/offers?ref=Priya&phone=98765
+     2. GitHub Pages serves our custom 404.html
+     3. 404.html redirects to: /TheGoldCrownStudio/#/offers?ref=Priya&phone=98765
+     4. HashRouter renders Offers page, params now sit in window.location.hash */
   useEffect(() => {
-    const hash = window.location.hash; // "#/offers?ref=Priya&phone=98765xxxxx"
+    // After 404 redirect, params are in the hash: #/offers?ref=X&phone=Y
+    const hash = window.location.hash;
     const qIndex = hash.indexOf('?');
     if (qIndex !== -1) {
       const params = new URLSearchParams(hash.slice(qIndex));
@@ -54,15 +56,24 @@ export default function Offers() {
       const phone = params.get('phone');
       if (ref)   setReferrerName(decodeURIComponent(ref));
       if (phone) setReferrerPhone(decodeURIComponent(phone));
+    } else {
+      // Fallback for local dev (no 404 redirect)
+      const search = new URLSearchParams(window.location.search);
+      const ref   = search.get('ref');
+      const phone = search.get('phone');
+      if (ref)   setReferrerName(decodeURIComponent(ref));
+      if (phone) setReferrerPhone(decodeURIComponent(phone));
     }
   }, []);
 
-  /* Build base URL for the offers page */
+  /* Generate plain /offers?ref=...&phone=... links (NO hash).
+     WhatsApp preserves plain query strings. Our 404.html then
+     redirects into HashRouter with params intact. */
   const getOffersBase = () => {
     const base = window.location.origin;
     return base.includes('github.io')
-      ? `${base}/TheGoldCrownStudio/#/offers`
-      : `${base}/#/offers`;
+      ? `${base}/TheGoldCrownStudio/offers`
+      : `${base}/offers`;
   };
 
   /* Generate referral link including phone */

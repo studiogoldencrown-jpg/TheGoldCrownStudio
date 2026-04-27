@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Gold Crown Studio</title>
+  <script>
+    // GitHub Pages 404 handler — preserves path AND query string
+    // Redirects: /TheGoldCrownStudio/offers?ref=X&phone=Y
+    //         → /TheGoldCrownStudio/#/offers?ref=X&phone=Y
+    // This way HashRouter picks up the correct route,
+    // and the Offers page reads params from the hash fragment.
+    var l = window.location;
+    var base = '/TheGoldCrownStudio';
+    var path = l.pathname.replace(base, '') || '/';
+    var search = l.search; // e.g. ?ref=user1&phone=9899564860
+    var hash = l.hash;
+    l.replace(
+      l.origin + base + '/#' + path + search + hash
+    );
+  </script>
+</head>
+<body></body>
+</html>
